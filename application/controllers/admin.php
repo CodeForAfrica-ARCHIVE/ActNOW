@@ -16,14 +16,22 @@ class Admin extends CI_Controller {
 			$data['page_title'] = 'Admin Dashboard';
 				
 			//get stats
-			$this->load->model('admin2');
-			$data['stats'] = $this->admin2->stats();
+			$this->load->model('admin_model');
+			$data['stats'] = $this->admin_model->stats();
 			
 			$this->load->view('admin/header_admin',$data);
 			$this->load->view('admin/admin', $data);
 			$this->load->view('admin/footer', $data);
 	}
-	
+	public function subscribers(){
+		$this->load->model('admin_model');
+		$data['page_title'] = "Subscribers";
+		$data['subscribers'] = $this->admin_model->get_subscribers();
+		
+		$this->load->view('admin/header_admin', $data);
+		$this->load->view('admin/subscribers', $data);
+		$this->load->view('admin/footer', $data);
+	}
 		public function manage_users(){
 	
 		$data['page_title'] = 'Manage Users';

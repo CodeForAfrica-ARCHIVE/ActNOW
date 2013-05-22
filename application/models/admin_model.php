@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Admin2 extends CI_Model {
+class Admin_model extends CI_Model {
 	public function index(){
  	
  }
@@ -16,5 +16,14 @@ class Admin2 extends CI_Model {
 	$stats = array('subscribers'=>$subscribers, 'petitions'=>$petitions, 'signatures'=>$signatures);
 	return $stats;
 	
+ }
+ public function get_subscribers(){
+ 	
+	$this->db->select("*");
+	$this->db->from("subscribers");
+	$subscribers = $this->db->get();
+	$subscribers = $subscribers->result_array();
+	
+	return $subscribers;
  }
 }

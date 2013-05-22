@@ -19,5 +19,13 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/footer', $data);
 	}
 	
-
+		public function manage_users(){
+	
+		$data['page_title'] = 'Manage Users';
+		$this->load->view('admin/header_admin', $data);
+		$this->load->view('admin/users',$data);
+		$this->load->view('admin/add_user', $data);
+		$this->load->view('admin/footer', $data);
+		
+	}
 }

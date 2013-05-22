@@ -13,7 +13,12 @@ class Admin extends CI_Controller {
        
 	public function index()
 	{
-			$data['page_title'] = 'Admin Dashboard';		
+			$data['page_title'] = 'Admin Dashboard';
+				
+			//get stats
+			$this->load->model('admin2');
+			$data['stats'] = $this->admin2->stats();
+			
 			$this->load->view('admin/header_admin',$data);
 			$this->load->view('admin/admin', $data);
 			$this->load->view('admin/footer', $data);

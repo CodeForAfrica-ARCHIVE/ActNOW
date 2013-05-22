@@ -15,10 +15,10 @@ class Db_functions extends CI_Model {
 		return $petition_id;
 	}
 	public function user_signed_petition($user_id, $petition_id){
-		$this->db->query("select * from signatures where petition_id='$petition_id' and user_id='$user_id'");
-		$result = $result->result_array();
+		$query = $this->db->query("select * from signatures where petition_id='$petition_id' and user_id='$user_id'");
+		//$result = $result->result_array();
 		
-		if($result->num_rows()==0){
+		if($query->num_rows()==0){
 			return false;
 		}else{
 			return true;

@@ -31,6 +31,10 @@ class Admin_model extends CI_Model {
 	$this->db->from("petitions");
 	$petitions = $this->db->get();
 	$petitions = $petitions->result_array();
+	return $petitions;
 	
+ }
+ public function add_petition($name, $description){
+ 	$this->db->query("insert into petitions(name, description)values('$name', '$description')");
  }
 }

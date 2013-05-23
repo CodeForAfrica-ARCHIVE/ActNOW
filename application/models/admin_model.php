@@ -34,6 +34,12 @@ class Admin_model extends CI_Model {
 	return $petitions;
 	
  }
+ public function process_updates($petition, $message){
+ 	$sql = mysql_query("select subscriptions.*, subscribers.* from subscriptions left join subscribers on subscribers.id=subscriptions.subscriber where subscriptions.petition='$petition'");
+ 	while($row = mysql_fetch_array($sql)){
+ 		mail('actnowsms@gmail.com', $row['number'], $message);
+ 	}
+ }
  public function add_petition($name, $description){
  	$this->db->query("insert into petitions(name, description)values('$name', '$description')");
  }

@@ -12,6 +12,7 @@
 <div id="admin_menu">
 <ul>
 	<li><a href="<?php echo base_url()?>index.php/admin/">Dashboard</a></li>
+	<li><a href="<?php echo base_url()?>index.php/admin/send_update">Send Update</a></li>
 	<li><a href="<?php echo base_url()?>index.php/admin/manage_users">Manage Users</a></li>
 	<li><?php echo anchor('user/logout', 'Logout'); ?></li>
 </ul>

@@ -42,12 +42,25 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer', $data);
 		
 	   }
+	
 	public function new_petition(){
 		$data['page_title'] = 'Add petition';
 		$this->load->view('admin/header_admin', $data);
 		$this->load->view('admin/add_petition', $data);
 		$this->load->view('admin/footer', $data);
 	}
+public function send_update(){
+		$data['page_title'] = 'Send Update';
+		$this->load->model('admin_model');
+		$data['petitions'] = $this->admin_model->get_petitions();
+		if(isset($_POST)){
+			$this->admin_model->process_updates($_POST['petition'], $_POST['message']);
+		}
+		$this->load->view('admin/header_admin', $data);
+		$this->load->view('admin/send_update', $data);
+		$this->load->view('admin/footer', $data);
+	}
+
 	public function add_petition(){
 		$name = $_POST['name'];
 		$description = $_POST['description'];

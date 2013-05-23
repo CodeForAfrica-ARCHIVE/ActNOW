@@ -2,7 +2,7 @@
 <div style="border-bottom:1px solid #f6f6f6;padding:10px;"><h3>Login</h3></div>
 <div class="signup_wrap">
 <div class="signin_form">
- <?php echo form_open("user/login"); ?>
+ <?php echo form_open(base_url()."user/login"); ?>
   <input type="text" id="email" name="email" value="" placeholder="Email"/>
   <input type="password" id="pass" name="pass" value="" placeholder="password"/>
   <input type="submit" class="btn btn-primary" value="Sign in"  style="margin-top: -8px;"/>
@@ -13,7 +13,7 @@
 <div class="form_title">Sign Up</div>
 <!--<div class="form_sub_title">It's free and anyone can join</div>-->
  <?php echo validation_errors('<p class="error">'); ?>
- <?php echo form_open("user/registration"); ?>
+ <?php echo form_open(base_url()."user/registration"); ?>
   <p>
   <label for="user_name">User Name:</label>
   <input type="text" id="user_name" name="user_name" value="<?php echo set_value('user_name'); ?>" />

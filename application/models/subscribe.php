@@ -36,6 +36,7 @@ class Subscribe extends CI_Model {
 			}	
 		
 			$this->db->query("insert into signatures(petition_id, user_id, message)VALUES('$petition_id', '$user_id', '$signature')");
+			$this->db->query("update petitions set signatures=signatures=1 where id='$petition_id'");
 			return "thanks for your signature";
 		}
  }

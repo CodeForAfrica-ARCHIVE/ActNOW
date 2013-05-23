@@ -15,7 +15,6 @@
 |
 */
 $config['base_url']	= 'http://localhost/actNow/';
-
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -26,7 +25,7 @@ $config['base_url']	= 'http://localhost/actNow/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------

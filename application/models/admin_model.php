@@ -26,4 +26,11 @@ class Admin_model extends CI_Model {
 	
 	return $subscribers;
  }
+ public function get_petitions(){
+ 	$this->db->select("*");
+	$this->db->from("petitions");
+	$petitions = $this->db->get();
+	$petitions = $petitions->result_array();
+	
+ }
 }

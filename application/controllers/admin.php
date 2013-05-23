@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
             // Your own constructor code
 			if(($this->session->userdata('user_name')==""))
 			{
-				redirect('/user');
+				redirect(base_url().'index.php/user');
 			}
        }
        
@@ -31,7 +31,16 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/header_admin', $data);
 		$this->load->view('admin/subscribers', $data);
 		$this->load->view('admin/footer', $data);
-	}
+	} 
+	public function petitions(){
+	   	$data['page_title'] = 'Petitions';
+		$this->load->model('admin_model');
+		$data['petitions'] = $this->admin_model->get_petitions();
+		$this->load->view('admin/header_admin', $data);
+		$this->load->view('admin/petitions', $data);
+		$this->load->view('admin/footer', $data);
+		
+	   }
 		public function manage_users(){
 	
 		$data['page_title'] = 'Manage Users';

@@ -3,7 +3,7 @@
 class Sms extends CI_Controller {
 		
 	public function index(){
-		$number = $_GET['number'];
+		$number = $_GET['phone'];
 		$text = $_GET['text'];
 	
 		$this->load->model('subscribe');
@@ -22,7 +22,7 @@ class Sms extends CI_Controller {
 			mail('actnowsms@gmail.com', $number, $returned);
 		}else if(strpos(strtolower($text), 'sign')!==false){
 			$returned = $this->subscribe->sign($number, $text);
-			echo $returned;
+			
 			mail('actnowsms@gmail.com', $number, $returned);
 		}
 	}

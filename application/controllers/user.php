@@ -9,7 +9,7 @@ class User extends CI_Controller{
  {
   if(($this->session->userdata('user_name')!=""))
   {
-   redirect('/admin');
+   redirect(base_url().'index.php/admin');
   }
   else{
    $data['page_title']= 'Home';
@@ -32,7 +32,7 @@ class User extends CI_Controller{
   $password=md5($this->input->post('pass'));
 
   $result=$this->user_model->login($email,$password);
-  if($result) redirect('/admin');
+  if($result) redirect(base_url().'index.php/admin');
   else        $this->index();
  }
  public function thank()
@@ -77,7 +77,7 @@ class User extends CI_Controller{
   else
   {
    $this->user_model->add_user_admin();
-   redirect('/admin');
+   redirect(base_url().'index.php/admin');
   }
  }
  public function logout()

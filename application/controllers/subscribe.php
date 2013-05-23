@@ -39,17 +39,17 @@ class Subscribe extends CI_Controller {
 	}
 	
 	public function unsubscribe(){
-		$this->db->query("select * from petitions where name='$message'");
-		$result = $this->db->get();
+		$result = $this->db->query("select * from petitions where name='$message'");
+		//$result = $this->db->get();
 		
-		$result = $result->result_array();
+		//$result = $result->result_array();
 		$petition_id = $result[0]['id'];
 		
 		$number = $_GET['number'];
-		$this->db->query("select * from subscribers where number='$number'");
-		$result = $this->db->get();
+		$result = $this->db->query("select * from subscribers where number='$number'");
+		//$result = $this->db->get();
 		//
-		$result = $result->result_array();
+		//$result = $result->result_array();
 		$user_id = $result[0]['id'];
 		
 		$this->db->query("delete from subscriptions where user='$user_id' and petition='$petition_id'");	

@@ -74,8 +74,16 @@ public function send_update(){
 		$description = $_POST['description'];
 		
 		$this->load->model('admin_model');
-		$this->admin_model->add_petition($name, $description);
-		redirect(base_url()."index.php/admin/petitions");
+		
+		$upload = $this->admin_model->add_picture($_FILES['image']['name']);
+		
+		if($upload['errors']=='0'){
+			$this->admin_model->add_petition($name, $description, $upload['image']);
+			redirect(base_url()."index.php/admin/petitions");
+		}else{
+			print $upload['errors'];
+		}
+		
 	}
 		public function manage_users(){
 	

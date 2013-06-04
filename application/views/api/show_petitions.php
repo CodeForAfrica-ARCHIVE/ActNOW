@@ -4,7 +4,7 @@ $total = 0;
 $Result = "<?xml version='1.0' encoding='utf-8'?>\n<petitions>\n";
 
 foreach($petitions as $petition){
-if($total<20){
+	if($total<20){
 	$Result .= " <petition>\n";	
 	$Result .= "<id>".$petition['id']."</id>";	
 	$Result .= "<title>".$petition['name']."</title>";
@@ -14,7 +14,7 @@ if($total<20){
 
 		 $Result .= " </petition>\n";
 		}
-$total++;
+	$total++;
 }
 $Result .= "</petitions>\n"; 
 echo $Result;

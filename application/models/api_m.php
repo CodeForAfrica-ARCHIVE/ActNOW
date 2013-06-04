@@ -2,7 +2,7 @@
 class Api_m extends CI_Model {
 	public function get_petitions($type){
 		
-		if($type!=''){
+		if($type!='0'){
 			$this->db->select("petitions.*, categories.*");
 			$this->db->from("petitions");
 			$this->db->join("categories", "petitions.category=categories.cat_id");

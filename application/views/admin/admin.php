@@ -2,13 +2,13 @@
 <table class="table table-striped">
 	<tbody>
 		<tr>
-			<td><a href="<?php echo base_url()?>admin/subscribers">Subscribers</a></td><td><?php echo $stats['subscribers']?></td>
+			<td><a href="<?php echo base_url()?>index.php/admin/subscribers">Subscribers</a></td><td><?php echo $stats['subscribers']?></td>
 		</tr>
 		<tr>
-			<td><a href="<?php echo base_url()?>admin/petitions">Petitions</a></td><td><?php echo $stats['petitions']?></td>
+			<td><a href="<?php echo base_url()?>index.php/admin/petitions">Petitions</a></td><td><?php echo $stats['petitions']?></td>
 		</tr>
 		<tr>
-			<td><a href="<?php echo base_url()?>admin/signatures">Signatures</a></td><td><?php echo $stats['signatures']?></td>
+			<td><a href="<?php echo base_url()?>index.php/admin/signatures">Signatures</a></td><td><?php echo $stats['signatures']?></td>
 		</tr>
 	</tbody>
 </table>

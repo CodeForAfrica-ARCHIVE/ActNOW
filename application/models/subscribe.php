@@ -5,9 +5,9 @@ class Subscribe extends CI_Model {
   parent::__construct();
  }
  public function sign($number, $message){
- 	 	$message = explode(' ', $message);
-		$signature = $message[2];
-		$petition = $message[1];
+ 	 	$message = explode(',', trim($message));
+		$signature = trim($message[2]);
+		$petition = trim($message[1]);
 		
  		$this->db->select("*");
 		$this->db->from("petitions");
@@ -41,9 +41,9 @@ class Subscribe extends CI_Model {
 		}
  }
  public function register($number, $message){
- 		$message = explode(' ', $message);
-		$name = $message[1];
-		$location = $message[2];
+ 		$message = explode(',', trim($message));
+		$name = trim($message[1]);
+		$location = trim($message[2]);
 		//get user id
 		$this->db->select("*");
 		$this->db->from("subscribers");
@@ -58,8 +58,8 @@ class Subscribe extends CI_Model {
 		}
 	}
  public function subscribe($number, $message){
- 		$message = explode(' ', $message);
-		$message = $message[1];
+ 		$message = explode(',', trim($message));
+		$message = trim($message[1]);
 		
  		$this->db->select("*");
 		$this->db->from("petitions");
@@ -107,8 +107,8 @@ class Subscribe extends CI_Model {
  }
  public function unsubscribe($number, $message){
  		
- 		$message = explode(' ', $message);
-		$message = $message[1];
+ 		$message = explode(',', trim($message));
+		$message = trim($message[1]);
 		
  		$this->db->select("*");
 		$this->db->from("petitions");

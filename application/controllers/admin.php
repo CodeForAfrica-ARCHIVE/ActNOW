@@ -42,7 +42,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer', $data);
 		
 	   }
-	
+	public function signatures(){
+	   	$data['page_title'] = 'Signatures';
+		$this->load->model('admin_model');
+		$data['signatures'] = $this->admin_model->get_signatures();
+		$this->load->view('admin/header_admin', $data);
+		$this->load->view('admin/signatures', $data);
+		$this->load->view('admin/footer', $data);
+		
+	   }
 	public function new_petition(){
 		$data['page_title'] = 'Add petition';
 		$this->load->view('admin/header_admin', $data);

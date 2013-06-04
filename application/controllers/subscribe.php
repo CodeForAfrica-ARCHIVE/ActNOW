@@ -37,7 +37,22 @@ class Subscribe extends CI_Controller {
 		
 		return "user subscribed";
 	}
-	
+	public function email_petitions(){
+		$email = $_GET['email'];
+		$this->db->query("insert into subscribers(email)values('$email')");
+		$user_id = $this->db->insert_id();
+		$this->db->query("insert into subscriptions(user, petition)values('$user_id', '4')");
+		echo "Thank you for your subscription";
+	}
+	public function sign_petitions(){
+		$email = $_GET['email'];
+		$message = $_GET['message'];
+		$this->db->query("insert into subscribers(email)values('$email')");
+		$user_id = $this->db->insert_id();
+		
+		$this->db->query("insert into signatures(petition_id, user_id, message)values('4', '$user_id', '$message')");
+		echo "Thank you for your signature";
+	}
 	public function unsubscribe(){
 		$result = $this->db->query("select * from petitions where name='$message'");
 		//$result = $this->db->get();

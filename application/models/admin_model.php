@@ -34,6 +34,15 @@ class Admin_model extends CI_Model {
 	return $petitions;
 	
  }
+ public function get_signatures(){
+ 	$this->db->select("signatures.*, subscribers.*");
+	$this->db->from("signatures");
+	$this->db->join("subscribers", "subscribers.id=signatures.user_id");
+	$signatures = $this->db->get();
+	$signatures = $signatures->result_array();
+	return $signatures;
+	
+ }
  public function process_updates($petition, $message){
  	$sql = mysql_query("select subscriptions.*, subscribers.* from subscriptions left join subscribers on subscribers.id=subscriptions.subscriber where subscriptions.petition='$petition'");
  	while($row = mysql_fetch_array($sql)){

@@ -11,6 +11,7 @@ foreach($petitions as $petition){
 	$Result .= "<description>".$petition['description']."</description>";
 	$Result .= "<signatures>".$petition['signatures']."</signatures>";
 	$Result .= "<category>".$petition['cat_name']."</category>";
+	$Result .= "<thumb_url>".base_url()."assets/uploads/".$petition['image']."</thumb_url>";
 
 		 $Result .= " </petition>\n";
 		}

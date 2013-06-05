@@ -19,4 +19,10 @@ class Api extends CI_Controller {
 		
 		$this->load->view('api/show_petitions', $data);
 	}
+	public function show_petition(){
+		$id = $_GET['id'];
+		$this->load->model('api_m');
+		$data['petitions'] = $this->api_m->show_petition($id);
+		$this->load->view('api/show_petitions', $data);
+	}
 }

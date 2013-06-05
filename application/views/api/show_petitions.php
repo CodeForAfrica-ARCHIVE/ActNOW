@@ -12,8 +12,7 @@ foreach($petitions as $petition){
 	$Result .= "<signatures>".$petition['signatures']."</signatures>";
 	$Result .= "<category>".$petition['cat_name']."</category>";
 	$Result .= "<thumb_url>".base_url()."assets/uploads/".$petition['image']."</thumb_url>";
-
-		 $Result .= " </petition>\n";
+	$Result .= " </petition>\n";
 		}
 	$total++;
 }

@@ -32,4 +32,10 @@ class Api extends CI_Controller {
 		$data['petitions'] = $this->api_m->sign_petition($petition, $message);
 		$this->load->view('api/sign_petition');
 	}
+	public function get_signatures(){
+		$petition = $_GET['pid'];
+		$this->load->model('api_m');
+		$data['signatures'] = $this->api_m->show_signatures($petition);
+		$this->load->view('api/show_signatures', $data);
+	}
 }

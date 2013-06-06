@@ -30,5 +30,15 @@ class Api_m extends CI_Model {
 	public function sign_petition($petition, $message){
 		$this->db->query("insert into signatures(`user_id`, `petition_id`, `message`)values('0', '$petition', '$message')");
 	}
+	public function show_signatures($petition){
+		$this->db->select("signatures.*, subscribers.*");
+		$this->db->from("signatures");
+		$this->db->join("subscribers", "signatures.user_id=subscribers.id");
+		$this->db->where("signatures.petition_id", $petition);
+		
+		$result = $this->db->get();
+		$signatures = $result->result_array();
+		return $signatures;
+	}
 }
 ?>

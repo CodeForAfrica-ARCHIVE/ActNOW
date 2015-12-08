@@ -3,3 +3,9 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+.idea/

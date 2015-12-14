@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('dashboard');
 });
+
+Route::get('dashboard', array('uses' => 'DashboardController@index'));
 
 // route to show the login form
 Route::get('login', array('uses' => 'LoginController@showLogin'));

@@ -1,7 +1,10 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,4 +21,19 @@ class DatabaseSeeder extends Seeder
 
         Model::reguard();
     }
+}
+class UserTableSeeder extends Seeder
+{
+
+    public function run()
+    {
+        DB::table('users')->delete();
+        User::create(array(
+            'name'     => 'John Smith',
+            'username' => 'johnsmith',
+            'email'    => 'johnsmith@maildomain.org',
+            'password' => Hash::make('awesome'),
+        ));
+    }
+
 }

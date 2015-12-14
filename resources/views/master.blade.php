@@ -32,7 +32,18 @@
     </nav>
 @endif
 <div class="container-fluid" id="all-content">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="#">Petitions</a></li>
+                <li><a href="#">Subscribers</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Stats</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
     @yield('content')
+    </div>
 </div>
 
 <script type="text/javascript">

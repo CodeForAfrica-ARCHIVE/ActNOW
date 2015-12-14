@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-
+use View;
 
 class DashboardController extends Controller
 {
@@ -26,6 +26,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
+        return View::make('new_petition');
     }
 }

@@ -62,6 +62,7 @@ class DashboardController extends Controller
 
             DB::table('petitions')->insert($insert);
 
+            return View::make('new_petition')->with('success', 'Petition created successfully!');
         }
 
     }

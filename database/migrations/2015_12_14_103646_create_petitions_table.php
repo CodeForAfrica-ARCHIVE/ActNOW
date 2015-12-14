@@ -18,6 +18,7 @@ class CreatePetitionsTable extends Migration
             $table->string('description');
             $table->string('hashtag');
             $table->string('sms_number');
+            $table->string('code');
             $table->rememberToken();
             $table->timestamps();
         });

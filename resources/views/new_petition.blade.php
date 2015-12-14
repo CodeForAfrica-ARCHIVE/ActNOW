@@ -6,10 +6,12 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="form-horizontal">
                 <h1 class="page-header">New Petition</h1>
-                {!! Form::open(array('url' => 'login')) !!}
+                {!! Form::open(array('url' => 'add_petition')) !!}
                 <p>
                     {!! $errors->first('name') !!}
                     {!! $errors->first('description') !!}
+                    {!! $errors->first('sms_number') !!}
+                    {!! $errors->first('code') !!}
                 </p>
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -23,8 +25,9 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <select type="sms" name="sms_keyword" class="form-control" id="inputNumber">
+                        <select type="sms" name="sms_number" class="form-control" id="inputNumber">
                             <option>SMS Number</option>
+                            <option>1000</option>
                         </select>
                     </div>
                     <div class="col-sm-6">

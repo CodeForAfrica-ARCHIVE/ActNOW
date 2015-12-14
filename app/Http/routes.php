@@ -25,3 +25,6 @@ Route::post('login', array('uses' => 'LoginController@doLogin'));
 
 // logout
 Route::get('logout', array('uses' => 'LoginController@doLogout'));
+
+//add petition
+Route::post('add_petition', array('uses' => 'DashboardController@addPetition'));

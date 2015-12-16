@@ -27,6 +27,9 @@ Route::post('login', array('uses' => 'LoginController@doLogin'));
 Route::get('logout', array('uses' => 'LoginController@doLogout'));
 
 //add petition
+Route::get('petition/add', array('uses' => 'DashboardController@newPetition'));
+
+//process add petition
 Route::post('add_petition', array('uses' => 'DashboardController@addPetition'));
 
 //edit petition

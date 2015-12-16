@@ -30,6 +30,13 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $petitions = DB::table('petitions')->paginate(15);
+
+        return View::make('dashboard')->with(['petitions' => $petitions]);
+    }
+
+    public function newPetition()
+    {
         return View::make('new_petition');
     }
 

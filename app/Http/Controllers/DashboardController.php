@@ -66,9 +66,9 @@ class DashboardController extends Controller
 
     public function editPetition($petition_id){
 
-        $petition = DB::table('petitions')->where('id', $petition_id)->first();
+        $petitions = DB::table('petitions')->where('id', $petition_id)->first();
 
-        return View::make('edit_petition')->with('petition', $petition);
+        return View::make('edit_petition')->with('petitions', $petitions);
     }
 
     public function updatePetition(){

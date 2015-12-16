@@ -86,3 +86,8 @@ body {
 .main .page-header {
     margin-top: 0;
 }
+
+#new_petition{
+    text-align: right;
+    margin-bottom: 20px;
+}

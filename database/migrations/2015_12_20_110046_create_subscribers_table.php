@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePetitionsTable extends Migration
+class CreateSubscribersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class CreatePetitionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('petitions', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
-            $table->string('hashtag');
-            $table->string('sms_number');
-            $table->string('code');
-            $table->string('status');
-            $table->string('created_by');
-            $table->string('signatures');
+            $table->string('number');
+            $table->string('location');
+            $table->string('joined');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreatePetitionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('petitions');
+        Schema::drop('subscribers');
     }
 }

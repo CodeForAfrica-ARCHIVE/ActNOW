@@ -66,9 +66,9 @@ class DashboardController extends Controller
 
     public function editPetition($petition_id){
 
-        $petitions = DB::table('petitions')->where('id', $petition_id)->first();
+        $petition = DB::table('petitions')->where('id', $petition_id)->first();
 
-        return View::make('edit_petition')->with('petitions', $petitions);
+        return View::make('edit_petition')->with('petition', $petition);
     }
 
     public function updatePetition(){
@@ -106,6 +106,14 @@ class DashboardController extends Controller
 
         // run the validation rules on the inputs from the form
         return Validator::make($input, $rules);
+
+    }
+
+    public function singlePetition($petition_id){
+
+        $petition = DB::table('petitions')->where('id', $petition_id)->first();
+
+        return View::make('single_petition')->with('petition', $petition);
 
     }
 }

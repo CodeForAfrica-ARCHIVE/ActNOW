@@ -37,3 +37,6 @@ Route::get('petition/edit/{id}', array('uses' => 'DashboardController@editPetiti
 
 //process edit petition
 Route::post('edit_petition', array('uses' => 'DashboardController@updatePetition'));
+
+//view petition
+Route::get('petition/{id}', array('uses' => 'DashboardController@singlePetition'));

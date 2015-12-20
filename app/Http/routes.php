@@ -43,3 +43,6 @@ Route::get('petition/{id}', array('uses' => 'DashboardController@singlePetition'
 
 //delete petition
 Route::get('petition/delete/{id}', array('uses' => 'DashboardController@deletePetition'));
+
+//sign petition
+Route::get('sms/{number}/{message}', array('uses' => 'SMSController@index'));

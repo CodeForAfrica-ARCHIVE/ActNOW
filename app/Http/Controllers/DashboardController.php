@@ -116,4 +116,12 @@ class DashboardController extends Controller
         return View::make('single_petition')->with('petition', $petition);
 
     }
+
+    public function deletePetition($petition_id){
+
+        DB::table('petitions')->where('id', $petition_id)->delete();
+
+        //show result
+        return View::make('petition_deleted');
+    }
 }

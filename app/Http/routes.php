@@ -40,3 +40,6 @@ Route::post('edit_petition', array('uses' => 'DashboardController@updatePetition
 
 //view petition
 Route::get('petition/{id}', array('uses' => 'DashboardController@singlePetition'));
+
+//delete petition
+Route::get('petition/delete/{id}', array('uses' => 'DashboardController@deletePetition'));

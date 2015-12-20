@@ -87,7 +87,7 @@ body {
     margin-top: 0;
 }
 
-#new_petition{
+.action-buttons{
     text-align: right;
     margin-bottom: 20px;
 }

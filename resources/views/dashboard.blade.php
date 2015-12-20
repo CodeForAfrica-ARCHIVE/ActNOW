@@ -5,10 +5,12 @@
 @section('content')
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <div id="new_petition">
-            <a href="petition/add"><button type="button" class="btn btn-success">
-                <span class="action-button"><i class="fa fa-plus"></i> New Petition</span>
-            </button></a>
+        <div class="action-buttons">
+            <a href="petition/add">
+                <button type="button" class="btn btn-success">
+                    <span class="action-button"><i class="fa fa-plus"></i> New Petition</span>
+                </button>
+            </a>
         </div>
 
         <div class="list-group">

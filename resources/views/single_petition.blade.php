@@ -9,6 +9,19 @@
             <li class="active">{!! $petition->name !!}</li>
         </ol>
 
+        <div class="action-buttons">
+            <a href="edit/{!! $petition->id !!}">
+                <button type="button" class="btn btn-warning">
+                    <span class="action-button"><i class="fa fa-plus"></i> Edit</span>
+                </button>
+            </a>
+            <a href="delete/{!! $petition->id !!}">
+                <button type="button" class="btn btn-danger">
+                    <span class="action-button"><i class="fa fa-plus"></i> Delete</span>
+                </button>
+            </a>
+        </div>
+
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">{!! $petition->name !!}</h3>

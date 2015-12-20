@@ -59,18 +59,23 @@ class SMSController extends Controller
             DB::table('signatures')->insert($sign);
 
             DB::table('petitions')->where('id', $petition_id)->increment('signatures', 1);
-            $result = "thanks for your signature";
+            $result = "Thank you for your signature!";
         }
 
         return $result;
     }
 
-
+    /**
+     * Function to subscribe user to petition
+     * @param $number of user
+     * @param $message
+     * @return string
+     */
     public function subscribe($number, $message){
         //remove first occurrence of 'sign'
         $message = trim(preg_replace('/subscribe/', '', $message, 1));
 
-        //first word is keyword, the rest is message
+        //first word is keyword
         $keyword = explode(' ', trim($message))[0];
 
         //find petition with the keyword
@@ -90,16 +95,57 @@ class SMSController extends Controller
                 $user_id = $user->id;
             }
 
-
+            //check if user is already subscribed
             $total = DB::table('subscriptions')->where("user",$user_id)->where("petition",$petition_id)->first();
 
             if(!empty($total)){
-                return "You are already subscribed to '".$petition->name."'.";
+                $result = "You are already subscribed to '".$petition->name."'.";
             }else{
+                //subscribe user
                 $subscription = array('user'=>$user_id, 'petition'=>$petition_id);
                 DB::table('subscriptions')->insert($subscription);
 
                 $result = "You have been subscribed to '".$petition->name."'.";
+            }
+        }
+
+        return $result;
+    }
+
+    public function unsubscribe($number, $message){
+
+        //remove first occurrence of 'sign'
+        $message = trim(preg_replace('/unsubscribe/', '', $message, 1));
+
+        //first word is keyword, the rest is message
+        $keyword = explode(' ', trim($message))[0];
+
+        //find petition with the keyword
+        $petition = DB::table('petitions')->where('code', $keyword)->first();
+
+        if(empty($petition)){
+            $result = "Petition not found!";
+        }else{
+            $petition_id = $petition->id;
+
+            $user = DB::table('subscribers')->where('number', $number)->first();
+
+            if(empty($user)){
+                $result = "You are not subscribed to any petition";
+            }else{
+                $user_id = $user->id;
+
+                //check if user is subscribed
+                $total = DB::table('subscriptions')->where("user",$user_id)->where("petition",$petition_id)->first();
+
+                if(empty($total)){
+                    $result = "You are not subscribed to '".$petition->name."'.";
+                }else{
+                    //unsubscribe user
+                    DB::table('subscriptions')->where('user', $user_id)->where('petition', $petition_id)->delete();
+
+                    $result = "You have been unsubscribed from '".$petition->name."'.";
+                }
             }
         }
 

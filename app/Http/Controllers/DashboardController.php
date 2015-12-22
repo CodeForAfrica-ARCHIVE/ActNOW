@@ -57,7 +57,7 @@ class DashboardController extends Controller
                 "code" => Input::get('code'),
             );
 
-            DB::table('petitions')->save($insert);
+            DB::table('petitions')->insert($insert);
 
             return View::make('new_petition')->with('success', 'Petition created successfully!');
         }
@@ -120,7 +120,7 @@ class DashboardController extends Controller
         $date1=date_create($petition->created_at);
         $date2=date_create(date("Y-m-d"));
         $diff=date_diff($date1,$date2);
-        $period = str_replace("+", "", $diff->format("%R%a days"));
+        $period = $diff->format("%a days");
 
         return View::make('single_petition')->with('data', array("petition"=>$petition, "signatures"=>$signatures, "signatures_count"=>$signatures_count, "period"=>$period));
 

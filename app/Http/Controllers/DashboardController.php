@@ -113,9 +113,16 @@ class DashboardController extends Controller
 
         $petition = DB::table('petitions')->where('id', $petition_id)->first();
 
-        $signatures = DB::table('signatures')->where('petition', $petition_id)->paginate(10);;
+        $signatures = DB::table('signatures')->where('petition', $petition_id)->paginate(10);
 
-        return View::make('single_petition')->with('data', array("petition"=>$petition, "signatures"=>$signatures));
+        $signatures_count = DB::table('signatures')->where('petition', $petition_id)->count();
+
+        $date1=date_create($petition->created_at);
+        $date2=date_create(date("Y-m-d"));
+        $diff=date_diff($date1,$date2);
+        $period = str_replace("+", "", $diff->format("%R%a days"));
+
+        return View::make('single_petition')->with('data', array("petition"=>$petition, "signatures"=>$signatures, "signatures_count"=>$signatures_count, "period"=>$period));
 
     }
 

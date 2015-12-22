@@ -71,7 +71,9 @@
             {!! $data['signatures']->render() !!}
         </div>
         <div class="jumbotron col-sm-3">
-            
+            Signatures: {!! $data['signatures_count'] !!}
+            <br/>
+            Period: {!! $data['period'] !!}
         </div>
     </div>
 @stop

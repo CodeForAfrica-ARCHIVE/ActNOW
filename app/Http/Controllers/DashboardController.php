@@ -113,7 +113,9 @@ class DashboardController extends Controller
 
         $petition = DB::table('petitions')->where('id', $petition_id)->first();
 
-        return View::make('single_petition')->with('petition', $petition);
+        $signatures = DB::table('signatures')->where('petition', $petition_id)->get();
+
+        return View::make('single_petition')->with('data', array("petition"=>$petition, "signatures"=>$signatures));
 
     }
 

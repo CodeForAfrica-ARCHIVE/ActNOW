@@ -68,6 +68,7 @@
 
                 </tbody>
             </table>
+            {!! $data['signatures']->render() !!}
         </div>
         <div class="jumbotron col-sm-3">
             

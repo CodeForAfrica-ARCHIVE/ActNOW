@@ -48,27 +48,35 @@
         </div>
 
         <div class="table-responsive col-sm-9">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Message</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                @for($i = 1; $i<(sizeof($data['signatures']) + 1); $i++)
+            @if(sizeof($data['signatures'])==0)
+                <div class="alert alert-warning" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    No one has signed yet!
+                </div>
+            @else
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>{!! $i !!}</td>
-                        <td>{!! $data['signatures'][$i-1]->message !!}</td>
-                        <td>{!! $data['signatures'][$i-1]->created_at !!}</td>
+                        <th>#</th>
+                        <th>Message</th>
+                        <th>Date</th>
                     </tr>
-                @endfor
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
-            {!! $data['signatures']->render() !!}
+                    @for($i = 1; $i<(sizeof($data['signatures']) + 1); $i++)
+                        <tr>
+                            <td>{!! $i !!}</td>
+                            <td>{!! $data['signatures'][$i-1]->message !!}</td>
+                            <td>{!! $data['signatures'][$i-1]->created_at !!}</td>
+                        </tr>
+                    @endfor
+
+                    </tbody>
+                </table>
+                {!! $data['signatures']->render() !!}
+            @endif
         </div>
         <div class="jumbotron col-sm-3">
             Signatures: {!! $data['signatures_count'] !!}

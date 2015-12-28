@@ -47,12 +47,6 @@
     @yield('content')
     </div>
 </div>
-
-<script type="text/javascript">
-    var myTextEl = document.getElementById('all-content');
-    myTextEl.innerHTML = Autolinker.link(myTextEl.innerHTML);
-</script>
-
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

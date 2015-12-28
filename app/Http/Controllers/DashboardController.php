@@ -134,8 +134,8 @@ class DashboardController extends Controller
         return View::make('petition_deleted');
     }
 
-    public function listSubscribers($petition_id=null){
-        if($petition_id == null){
+    public function listSubscribers($petition_id=0){
+        if($petition_id == 0){
             $subscribers = DB::table('subscribers')->paginate(20);
         }else{
             $subscribers = DB::table('subscribers')
@@ -143,6 +143,9 @@ class DashboardController extends Controller
                 ->where('subscriptions.petition', $petition_id)
                 ->paginate(20);
         }
-        return View::make('list_subscribers')->with('subscribers', $subscribers);
+
+        $petitions = DB::table('petitions')->get();
+
+        return View::make('list_subscribers')->with('data', array("subscribers"=>$subscribers, "petitions"=>$petitions, "current_petition"=>$petition_id));
     }
 }

@@ -138,7 +138,10 @@ class DashboardController extends Controller
         if($petition_id == null){
             $subscribers = DB::table('subscribers')->paginate(20);
         }else{
-            $subscribers = DB::table('subscribers')->where('petition', $petition_id)->paginate(20);
+            $subscribers = DB::table('subscribers')
+                ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
+                ->where('subscriptions.petition', $petition_id)
+                ->paginate(20);
         }
         return View::make('list_subscribers')->with('subscribers', $subscribers);
     }

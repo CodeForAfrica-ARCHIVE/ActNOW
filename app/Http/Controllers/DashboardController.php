@@ -133,4 +133,13 @@ class DashboardController extends Controller
         //show result
         return View::make('petition_deleted');
     }
+
+    public function listSubscribers($petition_id=null){
+        if($petition_id == null){
+            $subscribers = DB::table('subscribers')->paginate(20);
+        }else{
+            $subscribers = DB::table('subscribers')->where('petition', $petition_id)->paginate(20);
+        }
+        return View::make('list_subscribers')->with('subscribers', $subscribers);
+    }
 }

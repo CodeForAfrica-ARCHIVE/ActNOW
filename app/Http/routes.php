@@ -46,3 +46,9 @@ Route::get('petition/delete/{id}', array('uses' => 'DashboardController@deletePe
 
 //sign petition
 Route::get('sms/{number}/{message}', array('uses' => 'SMSController@index'));
+
+//view subscribers
+Route::get('subscribers', array('uses'=>'DashboardController@listSubscribers'));
+
+//view subscribers for petition id
+Route::get('subscribers/{id}', array('uses'=>'DashboardController@listSubscribers'));

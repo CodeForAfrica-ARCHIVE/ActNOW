@@ -45,7 +45,7 @@ class DashboardController extends Controller
 
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
-            return Redirect::to('dashboard')
+            return Redirect::to('petition/add')
                 ->withErrors($validator) // send back all errors to the add petition form
                 ->withInput(Input::all());
         } else {

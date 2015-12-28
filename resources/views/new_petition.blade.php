@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-10 col-sm-2">
                         <button type="submit" class="btn btn-success">Save</button>
-                        <button type="submit" class="btn btn-warning">Cancel</button>
+                        <a href="/dashboard" class="btn btn-warning">Cancel</a>
                     </div>
                 </div>
 

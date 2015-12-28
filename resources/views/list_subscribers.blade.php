@@ -68,9 +68,12 @@
                 {!! $data['subscribers']->render() !!}
             <div id="broadcast">
                 <h4>Broadcast to subscribers</h4>
+                {!! Form::open(array('url' => 'broadcast')) !!}
                 <textarea class="form-control" rows="2" placeholder="Message"></textarea>
+                <input type="hidden" value="{!! $data['current_petition'] !!}">
                 <br/>
                 <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                {!! Form::close() !!}
             </div>
 
 

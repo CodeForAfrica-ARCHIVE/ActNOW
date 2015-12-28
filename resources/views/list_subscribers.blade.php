@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div>
+            <div id="filter-subscribers">
                 <script type="text/javascript">
                     $(document).ready(function() {
 
@@ -31,6 +31,7 @@
                         <option value="{!! $petition->id !!}" @if($petition->id == $data['current_petition']) selected="selected" @endif>{!! $petition->name !!}</option>
                     @endforeach
                 </select>
+
             </div>
 
             @if(sizeof($data['subscribers'])==0)
@@ -40,7 +41,7 @@
                     No subscribers yet!
                 </div>
             @else
-                <table class="table table-striped">
+                <table id="subscribers_list" class="table table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -65,6 +66,14 @@
                     </tbody>
                 </table>
                 {!! $data['subscribers']->render() !!}
-            @endif
+            <div id="broadcast">
+                <h4>Broadcast to subscribers</h4>
+                <textarea class="form-control" rows="2" placeholder="Message"></textarea>
+                <br/>
+                <button type="submit" class="btn btn-primary btn-sm">Send</button>
+            </div>
+
+
+        @endif
     </div>
 @stop

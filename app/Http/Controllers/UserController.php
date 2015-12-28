@@ -63,11 +63,29 @@ class UserController extends Controller
 
     protected function validate_form(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'username' => 'required',
-        ]);
+        $user = Auth::user();
+
+        $conditions = array('name'=>'required|max:255');
+
+        //check if username has been changed
+        if($user->username != $data['username']){
+            $conditions['username'] = 'required|max:255|unique:users';
+        }else{
+            $conditions['username'] = 'required|max:255';
+        }
+
+        //check if email has been changed
+        if($user->email != $data['email']){
+            $conditions['email'] = 'required|email|max:255|unique:users';
+        }else{
+            $conditions['email'] = 'required|email|max:255';
+        }
+
+        print "<pre>";
+        print_r($conditions);
+        print "</pre>";
+
+        return Validator::make($data, $conditions);
 
     }
 

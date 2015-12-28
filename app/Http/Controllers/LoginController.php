@@ -29,7 +29,7 @@ class LoginController extends Controller
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
             return Redirect::to('login')
-                ->withErrors($validator) // send back all errors to the login form
+                ->withErrors($validator, 'loginErrors') // send back all errors to the login form
                 ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
         } else {
 

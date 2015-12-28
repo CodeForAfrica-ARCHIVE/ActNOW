@@ -58,3 +58,9 @@ Route::post('broadcast', array('uses'=>'SMSController@broadcastMessage'));
 
 //show user profile
 Route::get('me', array('uses' => 'UserController@myProfile'));
+
+//edit user profile
+Route::get('me/edit', array('uses' => 'UserController@editProfile'));
+
+//process edit profile
+Route::post('me/edit', array('uses' => 'UserController@updateProfile'));

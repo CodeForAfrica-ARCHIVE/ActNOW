@@ -27,13 +27,13 @@
         <div class="action-buttons">
             <a href="edit/{!! $data['petition']->id !!}">
                 <button type="button" class="btn btn-warning">
-                    <span class="action-button"><i class="fa fa-plus"></i> Edit</span>
+                    <span class="action-button"><i class="fa fa-edit"></i> Edit</span>
                 </button>
             </a>
 
             <span id="delete-petition" data-petition="{!! $data['petition']->id !!}">
                 <button type="button" class="btn btn-danger">
-                    <span class="action-button"><i class="fa fa-plus"></i> Delete</span>
+                    <span class="action-button"><i class="fa fa-trash-o"></i> Delete</span>
                 </button>
             </span>
         </div>

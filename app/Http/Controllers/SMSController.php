@@ -161,7 +161,6 @@ class SMSController extends Controller
     public function broadcastMessage(){
         $validator = $this->validate_form(Input::all());
 
-
         //redirect page depends on petition id
         $petition_id = Input::get('petition_id');
         if($petition_id == 0 || $petition_id == null){

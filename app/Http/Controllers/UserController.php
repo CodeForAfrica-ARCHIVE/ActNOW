@@ -108,7 +108,7 @@ class UserController extends Controller
             $user->fill([
                 'password' => Hash::make(Input::get('password'))
             ])->save();
-            
+
             return Redirect::to('me')->with('message', 'Password changed successfully!');
         }
     }

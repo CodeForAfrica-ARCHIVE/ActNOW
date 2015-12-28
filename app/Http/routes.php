@@ -67,4 +67,9 @@ Route::post('me/edit', array('uses' => 'UserController@updateProfile'));
 
 //change password
 Route::get('me/change_pass', array('uses' => 'UserController@changePassword'));
+
+//process change password
 Route::post('me/change_pass', array('uses' => 'UserController@updatePassword'));
+
+//register
+Route::post('register', array('uses' => 'RegisterUserController@index'));

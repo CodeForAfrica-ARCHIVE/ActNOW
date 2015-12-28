@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use View;
 
 class SMSController extends Controller
@@ -151,4 +153,63 @@ class SMSController extends Controller
 
         return $result;
     }
+
+    /**
+     * Broadcast message to all users or specified petition
+     * @return mixed
+     */
+    public function broadcastMessage(){
+        $validator = $this->validate_form(Input::all());
+
+
+        //redirect page depends on petition id
+        $petition_id = Input::get('petition_id');
+        if($petition_id == 0 || $petition_id == null){
+            $redirect = 'subscribers';
+            $subscribers = DB::table('subscribers')->get();
+
+        }else{
+
+            $subscribers = DB::table('subscribers')
+                ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
+                ->where('subscriptions.petition', $petition_id)
+                ->get();
+            $redirect = 'subscribers/'.$petition_id;
+        }
+
+        // if the validator fails, redirect back to the form
+        if ($validator->fails()) {
+            return Redirect::to($redirect)
+                ->withErrors($validator) // send back all errors to the add petition form
+                ->withInput(Input::all());
+        } else {
+            //on success send messages
+            foreach($subscribers as $subscriber){
+                $this->sendSMS($subscriber, Input::get('message'));
+            }
+            //then redirect to list of subscribers
+            return Redirect::to($redirect)->with('message', 'Message sent successfully!');
+        }
+    }
+
+    public function validate_form($input){
+        // validate the info, create rules for the inputs
+        $rules = array(
+            'message'    => 'required|max:145'
+        );
+
+        // run the validation rules on the inputs from the form
+        return Validator::make($input, $rules);
+
+    }
+
+    /**
+     * Function to send sms to specified subscriber
+     * @param $subscriber object
+     * @param $message
+     */
+    public function sendSMS($subscriber, $message){
+
+    }
+
 }

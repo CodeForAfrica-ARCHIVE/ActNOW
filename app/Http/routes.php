@@ -52,3 +52,6 @@ Route::get('subscribers', array('uses'=>'DashboardController@listSubscribers'));
 
 //view subscribers for petition id
 Route::get('subscribers/{id}', array('uses'=>'DashboardController@listSubscribers'));
+
+//broadcast message to subscribers of specified petition
+Route::post('broadcast', array('uses'=>'SMSController@broadcastMessage'));

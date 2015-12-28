@@ -68,11 +68,23 @@
                 {!! $data['subscribers']->render() !!}
             <div id="broadcast">
                 <h4>Broadcast to subscribers</h4>
+
+                {!! \Illuminate\Support\Facades\Session::get('message') !!}
+
                 {!! Form::open(array('url' => 'broadcast')) !!}
-                <textarea class="form-control" rows="2" placeholder="Message"></textarea>
-                <input type="hidden" value="{!! $data['current_petition'] !!}">
-                <br/>
-                <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                {!! $errors->first('message') !!}
+                <div class="form-group">
+                    <textarea class="form-control" rows="2" placeholder="Message" name="message"></textarea>
+                </div>
+
+                <input type="hidden" value="{!! $data['current_petition'] !!}" name="petition_id">
+
+                <div class="form-group">
+                    <div class="pull-right col-sm-2">
+                        <button type="submit" class="btn btn-success">Send</button>
+                        <span id="cancel" class="btn btn-warning">Cancel</span>
+                    </div>
+                </div>
                 {!! Form::close() !!}
             </div>
 

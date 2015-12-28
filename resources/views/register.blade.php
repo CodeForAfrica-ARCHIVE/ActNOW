@@ -12,10 +12,16 @@
                     {!! $errors->first('email') !!}
                     {!! $errors->first('password') !!}
                     {!! $errors->first('name') !!}
+                    {!! $errors->first('username') !!}
                 </p>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Full name">
+                        <input type="text" name="username" class="form-control" id="inputUserName" placeholder="User name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Full Name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -39,7 +45,7 @@
                         <button type="submit" class="btn btn-default">Register</button>
                     </div>
                 </div>
-
+                <a href="login">Already registered? Login</a>
                 {!! Form::close() !!}
             </div>
         </div>

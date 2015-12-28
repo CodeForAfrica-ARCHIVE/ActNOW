@@ -75,4 +75,4 @@ Route::post('me/change_pass', array('uses' => 'UserController@updatePassword'));
 Route::get('register', array('uses' => 'RegisterUserController@index'));
 
 //process registration form
-Route::post('register', array('uses' => 'RegisterUserController@registerUser'));
+Route::post('register', array('uses' => 'RegisterUserController@doRegister'));

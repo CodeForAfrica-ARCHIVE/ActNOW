@@ -38,7 +38,7 @@
                 <ul class="nav nav-sidebar">
                     <li><a href="/">Petitions</a></li>
                     <li><a href="/subscribers">Subscribers</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="/me">Profile</a></li>
                     <li><a href="#">Stats</a></li>
                     <li><a href="#">Settings</a></li>
                 </ul>

@@ -55,3 +55,6 @@ Route::get('subscribers/{id}', array('uses'=>'DashboardController@listSubscriber
 
 //broadcast message to subscribers of specified petition
 Route::post('broadcast', array('uses'=>'SMSController@broadcastMessage'));
+
+//show user profile
+Route::get('me', array('uses' => 'UserController@myProfile'));

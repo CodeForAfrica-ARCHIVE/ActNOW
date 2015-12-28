@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 use Illuminate\Support\Facades\Redirect;
@@ -81,12 +82,35 @@ class UserController extends Controller
             $conditions['email'] = 'required|email|max:255';
         }
 
-        print "<pre>";
-        print_r($conditions);
-        print "</pre>";
-
         return Validator::make($data, $conditions);
 
+    }
+
+    public function changePassword(){
+        return View::make('change_password');
+    }
+
+    public function updatePassword(){
+        $user = Auth::user();
+        $oldPassword = $user->password;
+
+        $validator = Validator::make(Input::all(), ['password' => 'required|confirmed|min:6']);
+
+        // if the validator fails, redirect back to the form
+        if ($validator->fails()) {
+            return Redirect::to('me/change_pass')
+                ->withErrors($validator) // send back all errors to the add petition form
+                ->withInput(Input::all());
+        } else if (!Hash::check(Input::get('oldPassword'), $oldPassword)) {
+            return Redirect::to('me/change_pass')->with('message', 'Your old password does not match what is currently saved!');
+        }else{
+            //store new password and notify success
+            $user->fill([
+                'password' => Hash::make(Input::get('password'))
+            ])->save();
+            
+            return Redirect::to('me')->with('message', 'Password changed successfully!');
+        }
     }
 
 }

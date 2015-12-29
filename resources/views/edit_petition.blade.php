@@ -5,10 +5,8 @@
 @section('content')
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="form-horizontal">
-                @if( !empty($success))
-                    {!! $success !!}
-                @endif
                 <h1 class="page-header">Edit Petition</h1>
+                {!! \Illuminate\Support\Facades\Session::get('message') !!}
                 {!! Form::open(array('url' => 'edit_petition')) !!}
                 <p>
                     {!! $errors->first('name') !!}

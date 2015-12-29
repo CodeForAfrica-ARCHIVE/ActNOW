@@ -109,9 +109,15 @@ class DashboardController extends Controller
                 "code" => Input::get('code'),
             );
 
-            DB::table('petitions')->where('id', Input::get('id'))->update($update_array);
+            $petition = DB::table('petitions')->where('id', Input::get('id'))->first();
 
+            if(($petition->created_by != $this->user_id)&&(!$this->isAdmin)){
+                return View::make('access_denied')->with('message', 'You can only edit your own petitions!');
+            }else {
+                DB::table('petitions')->where('id', Input::get('id'))->update($update_array);
 
+                return Redirect::to('petition/edit/'.Input::get('id'))->with('message', 'Petition updated successfully!');
+            }
         }
 
     }

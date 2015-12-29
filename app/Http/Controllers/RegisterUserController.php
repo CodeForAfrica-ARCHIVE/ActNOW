@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -44,12 +45,17 @@ class RegisterUserController extends Controller
             );
 
             //register user then login
-            User::create(array(
+
+            $user_details = array(
                 'name'     => Input::get('name'),
                 'username' => Input::get('username'),
                 'email'    => Input::get('email'),
                 'password' => Hash::make(Input::get('password')),
-            ));
+            );
+
+            //User::create($user_details); TODO: find out why username is not inserted
+
+            DB::table("users")->insert($user_details);
 
             // attempt to do the login
             if (Auth::attempt($userdata)) {

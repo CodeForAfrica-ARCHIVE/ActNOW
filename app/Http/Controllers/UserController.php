@@ -53,9 +53,21 @@ class UserController extends Controller
                 ->withErrors($validator) // send back all errors to the add petition form
                 ->withInput(Input::all());
         } else {
+
             $user = Auth::user();
-            $user->fill(\Input::all());
-            $user->save();
+            /*
+             * Todo: username not updating
+             * $user->fill(\Input::all());
+             * $user->save();
+            */
+
+            $user_details = array(
+                'name'     => Input::get('name'),
+                'username' => Input::get('username'),
+                'email'    => Input::get('email'),
+            );
+
+            DB::table('users')->where('id', $user->id)->update($user_details);
 
             //then redirect to list of subscribers
             return Redirect::to('me')->with('message', 'Profile updated successfully!');

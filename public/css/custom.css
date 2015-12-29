@@ -95,3 +95,6 @@ body {
     font-size: 0.8em;
     padding: 5px !important;
 }
+body.lean_body{
+    padding: 0px !important;
+}

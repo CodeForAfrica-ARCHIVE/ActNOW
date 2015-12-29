@@ -32,7 +32,6 @@ class DashboardController extends Controller
         if($route != "embed/{id}"){
             //check if user is logged in
             if (!Auth::check()) {
-
                 //redirect to login page
                 return Redirect::to('login')->send();
             } else {
@@ -213,6 +212,10 @@ class DashboardController extends Controller
     }
 
     public function embedPetition($petition_id){
-        print $petition_id;
+
+        $petition = DB::table('petitions')->where('id', $petition_id)->first();
+
+        return View::make('embed_petition')->with('petition', $petition);
+
     }
 }

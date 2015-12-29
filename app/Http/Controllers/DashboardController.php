@@ -30,6 +30,8 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+
         $petitions = DB::table('petitions')->paginate(15);
 
         return View::make('dashboard')->with(['petitions' => $petitions]);

@@ -171,15 +171,36 @@ class DashboardController extends Controller
 
     public function listSubscribers($petition_id=0){
         if($petition_id == 0){
-            $subscribers = DB::table('subscribers')->paginate(20);
+            if($this->isAdmin) {
+                $subscribers = DB::table('subscribers')->paginate(20);
+            }else{
+                $subscribers = DB::table('subscribers')
+                    ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
+                    ->leftJoin('petitions', 'petitions.id', '=', 'subscriptions.petition')
+                    ->where('petitions.created_by', $this->user_id)
+                    ->paginate(20);
+            }
         }else{
-            $subscribers = DB::table('subscribers')
-                ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
-                ->where('subscriptions.petition', $petition_id)
-                ->paginate(20);
+            if($this->isAdmin) {
+                $subscribers = DB::table('subscribers')
+                    ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
+                    ->where('subscriptions.petition', $petition_id)
+                    ->paginate(20);
+            }else{
+                $subscribers = DB::table('subscribers')
+                    ->leftJoin('subscriptions', 'subscribers.id', '=', 'subscriptions.user')
+                    ->leftJoin('petitions', 'petitions.id', '=', 'subscriptions.petition')
+                    ->where('petitions.created_by', $this->user_id)
+                    ->where('subscriptions.petition', $petition_id)
+                    ->paginate(20);
+            }
         }
 
-        $petitions = DB::table('petitions')->get();
+        if($this->isAdmin) {
+            $petitions = DB::table('petitions')->get();
+        }else{
+            $petitions = DB::table('petitions')->where('created_by', $this->user_id)->get();
+        }
 
         return View::make('list_subscribers')->with('data', array("subscribers"=>$subscribers, "petitions"=>$petitions, "current_petition"=>$petition_id));
     }

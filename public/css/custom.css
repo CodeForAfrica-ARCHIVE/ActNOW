@@ -91,3 +91,7 @@ body {
     text-align: right;
     margin-bottom: 20px;
 }
+.petition_meta.table>tbody>tr>td{
+    font-size: 0.8em;
+    padding: 5px !important;
+}

@@ -8,8 +8,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -24,18 +26,23 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        //check if user is logged in
-        if (!Auth::check()) {
-            //redirect to login page
-            return Redirect::to('login')->send();
-        }else{
 
-            //check if user is admin
-            $user = Auth::user();
-            if($user->isAdmin == "1"){
-                $this->isAdmin = true;
+        //if route is embed no need to check authentication
+        $route = Route::getFacadeRoot()->current()->uri();
+        if($route != "embed/{id}"){
+            //check if user is logged in
+            if (!Auth::check()) {
+
+                //redirect to login page
+                return Redirect::to('login')->send();
+            } else {
+                //check if user is admin
+                $user = Auth::user();
+                if ($user->isAdmin == "1") {
+                    $this->isAdmin = true;
+                }
+                $this->user_id = $user->id;
             }
-            $this->user_id = $user->id;
         }
     }
 
@@ -203,5 +210,9 @@ class DashboardController extends Controller
         }
 
         return View::make('list_subscribers')->with('data', array("subscribers"=>$subscribers, "petitions"=>$petitions, "current_petition"=>$petition_id));
+    }
+
+    public function embedPetition($petition_id){
+        print $petition_id;
     }
 }

@@ -76,3 +76,6 @@ Route::get('register', array('uses' => 'RegisterUserController@index'));
 
 //process registration form
 Route::post('register', array('uses' => 'RegisterUserController@doRegister'));
+
+//display petition embed
+Route::get('embed/{id}', array('uses'=>'DashboardController@embedPetition'));

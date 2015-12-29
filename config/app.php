@@ -138,6 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
@@ -146,6 +147,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Custom Service Providers
+         */
+        Barryvdh\Snappy\ServiceProvider::class,
     ],
 
     /*
@@ -194,7 +199,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
-        'Form'      => Illuminate\Html\FormFacade::class
+        'Form'      => Illuminate\Html\FormFacade::class,
+        'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
 
     ],
 

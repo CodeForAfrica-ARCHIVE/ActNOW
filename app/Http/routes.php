@@ -82,3 +82,6 @@ Route::get('embed/{id}', array('uses'=>'DashboardController@embedPetition'));
 
 //export as csv
 Route::get('export/csv/{id}', array('uses'=>'DashboardController@exportCSV'));
+
+//export to pdf
+Route::get('export/pdf/{id}', array('uses'=>'DashboardController@exportPDF'));

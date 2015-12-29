@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
+use Knp\Snappy\Pdf;
 use View;
 
 class DashboardController extends Controller
@@ -245,5 +247,25 @@ class DashboardController extends Controller
             return Response::make(rtrim($output, "\n"), 200, $headers);
 
         }
+    }
+
+    public function exportPDF($petition_id){
+
+        $snappy = App::make('snappy.pdf');
+
+        //Or output:
+        return Response::make(
+            $snappy->getOutputFromHtml('<h1>Bill</h1><p>You owe me money, dude.</p>'),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+        //$snappy->generateFromHtml('<h1>Bill</h1><p>You owe me money, dude.</p>', '/tmp/bill-123.pdf');
+
+
+        //return PDF::loadHTML("blabla")->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->download('myfile.pdf');
+
     }
 }

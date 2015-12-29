@@ -79,3 +79,6 @@ Route::post('register', array('uses' => 'RegisterUserController@doRegister'));
 
 //display petition embed
 Route::get('embed/{id}', array('uses'=>'DashboardController@embedPetition'));
+
+//export as csv
+Route::get('export/csv/{id}', array('uses'=>'DashboardController@exportCSV'));

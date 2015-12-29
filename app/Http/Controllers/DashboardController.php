@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -217,5 +218,32 @@ class DashboardController extends Controller
 
         return View::make('embed_petition')->with('petition', $petition);
 
+    }
+
+    public function exportCSV($petition_id){
+
+        $petition = DB::table('petitions')->where('id', $petition_id)->first();
+        if(($petition->created_by != $this->user_id)&&(!$this->isAdmin)){
+            return View::make('access_denied')->with('message', 'You can only export your own petitions!');
+        }else {
+
+            $signatures = DB::table('signatures')->where('petition', $petition_id)->get();
+
+            $output = implode(",", array('Message', 'Date signed'))."\n";
+
+            foreach ($signatures as $row) {
+                $output .=  implode(",", array($row->message, $row->created_at))."\n";
+            }
+
+
+            $headers = array(
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="signatures.csv"',
+            );
+
+            // download response
+            return Response::make(rtrim($output, "\n"), 200, $headers);
+
+        }
     }
 }

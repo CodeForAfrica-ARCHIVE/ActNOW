@@ -26,11 +26,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="sms" name="sms_number" class="form-control" id="inputNumber" placeholder="SMS Number" value="{!! $petition->sms_number !!}"/>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="code" name="code" class="form-control" id="inputCode" placeholder="Code or Keyword" value="{!! $petition->code !!}">
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="status" class="form-control" id="inputStatus">
+                            <option value="1" @if($petition->status == "1")selected="selected"@endif>Active</option>
+                            <option value="0" @if($petition->status == "0")selected="selected"@endif>Suspended</option>
+                        </select>
                     </div>
                     </div>
                 </div>

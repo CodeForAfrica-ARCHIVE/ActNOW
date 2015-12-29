@@ -27,13 +27,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="sms" name="sms_number" class="form-control" id="inputNumber" placeholder="SMS Number"/>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="code" name="code" class="form-control" id="inputCode" placeholder="Code or Keyword">
                     </div>
+
+                    <div class="col-sm-4">
+                        <select name="status" class="form-control" id="inputStatus">
+                            <option value="1">Active</option>
+                            <option value="0">Suspended</option>
+                        </select>
                     </div>
+                </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-10 col-sm-2">

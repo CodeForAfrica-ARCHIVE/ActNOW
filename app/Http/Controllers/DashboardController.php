@@ -80,6 +80,7 @@ class DashboardController extends Controller
                 "description" => Input::get('description'),
                 "sms_number" => Input::get('sms_number'),
                 "code" => Input::get('code'),
+                "status" => Input::get('status'),
                 "created_by" => $user->id,
             );
 
@@ -116,6 +117,7 @@ class DashboardController extends Controller
                 "description" => Input::get('description'),
                 "sms_number" => Input::get('sms_number'),
                 "code" => Input::get('code'),
+                "status" => Input::get('status'),
             );
 
             $petition = DB::table('petitions')->where('id', Input::get('id'))->first();
@@ -137,7 +139,8 @@ class DashboardController extends Controller
             'name'    => 'required|min:5',
             'description' => 'required',
             'sms_number' => 'required|numeric|min:4',
-            'code' => 'required|alphaNum|min:3'
+            'code' => 'required|alphaNum|min:3',
+            'status' => 'required'
         );
 
         // run the validation rules on the inputs from the form
@@ -255,17 +258,12 @@ class DashboardController extends Controller
 
         //Or output:
         return Response::make(
-            $snappy->getOutputFromHtml('<h1>Bill</h1><p>You owe me money, dude.</p>'),
+            $snappy->getOutputFromHtml(''),
             200,
             array(
                 'Content-Type'          => 'application/pdf',
                 'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
-        //$snappy->generateFromHtml('<h1>Bill</h1><p>You owe me money, dude.</p>', '/tmp/bill-123.pdf');
-
-
-        //return PDF::loadHTML("blabla")->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->download('myfile.pdf');
-
     }
 }

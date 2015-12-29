@@ -20,7 +20,7 @@ class CreatePetitionsTable extends Migration
             $table->string('hashtag');
             $table->string('sms_number');
             $table->string('code');
-            $table->string('status');
+            $table->string('status')->default("0");
             $table->string('created_by');
             $table->string('signatures');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

@@ -85,7 +85,11 @@ class DashboardController extends Controller
 
         $petition = DB::table('petitions')->where('id', $petition_id)->first();
 
-        return View::make('edit_petition')->with('petition', $petition);
+        if(($petition->created_by != $this->user_id)&&(!$this->isAdmin)){
+            return View::make('access_denied')->with('message', 'You can only edit your own petitions!');
+        }else {
+            return View::make('edit_petition')->with('petition', $petition);
+        }
     }
 
     public function updatePetition(){

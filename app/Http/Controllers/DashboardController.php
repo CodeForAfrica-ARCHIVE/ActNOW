@@ -149,13 +149,21 @@ class DashboardController extends Controller
         $diff=date_diff($date1,$date2);
         $period = $diff->format("%a days");
 
-        return View::make('single_petition')->with('data', array("petition"=>$petition, "signatures"=>$signatures, "signatures_count"=>$signatures_count, "period"=>$period));
-
+        if(($petition->created_by != $this->user_id)&&(!$this->isAdmin)){
+            return View::make('access_denied')->with('message', 'You can only view your own petitions!');
+        }else {
+            return View::make('single_petition')->with('data', array("petition" => $petition, "signatures" => $signatures, "signatures_count" => $signatures_count, "period" => $period));
+        }
     }
 
     public function deletePetition($petition_id){
 
-        DB::table('petitions')->where('id', $petition_id)->delete();
+        $petition = DB::table('petitions')->where('id', $petition_id)->first();
+        if(($petition->created_by != $this->user_id)&&(!$this->isAdmin)){
+            return View::make('access_denied')->with('message', 'You can only delete your own petitions!');
+        }else {
+            DB::table('petitions')->where('id', $petition_id)->delete();
+        }
 
         //show result
         return View::make('petition_deleted');

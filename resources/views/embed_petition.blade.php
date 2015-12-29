@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Embed this petition</span>
+        <span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-code"></i> Embed this petition</span>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

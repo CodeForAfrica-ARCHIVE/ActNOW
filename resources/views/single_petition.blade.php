@@ -85,7 +85,11 @@
                 <tr><td>Period</td><td>{!! $data['period'] !!}</td></tr>
                 </tbody>
             </table>
-            <span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Embed this petition</span>
+            <span class="btn btn-primary btn-sm petition_meta_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-code"></i> Embed this petition</span>
+
+            <a href="/export/excel/{!! $data['petition']->id !!}"><span class="btn btn-primary btn-sm petition_meta_btn"><i class="fa fa-file-excel-o"></i> Export to CSV</span></a>
+
+            <a href="/export/pdf/{!! $data['petition']->id !!}"><span class="btn btn-primary btn-sm petition_meta_btn"><i class="fa fa-file-pdf-o"></i> Export to PDF</span></a>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

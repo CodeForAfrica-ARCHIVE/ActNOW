@@ -49,12 +49,14 @@ class DashboardController extends Controller
                 ->withErrors($validator) // send back all errors to the add petition form
                 ->withInput(Input::all());
         } else {
+            $user = Auth::user();
 
             $insert = array(
                 "name" => Input::get('name'),
                 "description" => Input::get('description'),
                 "sms_number" => Input::get('sms_number'),
                 "code" => Input::get('code'),
+                "created_by" => $user->id,
             );
 
             DB::table('petitions')->insert($insert);

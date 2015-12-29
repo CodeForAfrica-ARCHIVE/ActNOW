@@ -19,20 +19,33 @@ use View;
 class DashboardController extends Controller
 {
 
+    public $isAdmin = false;
+    public $user_id = 0;
+
     public function __construct()
     {
         //check if user is logged in
         if (!Auth::check()) {
             //redirect to login page
             return Redirect::to('login')->send();
+        }else{
+
+            //check if user is admin
+            $user = Auth::user();
+            if($user->isAdmin == "1"){
+                $this->isAdmin = true;
+            }
+            $this->user_id = $user->id;
         }
     }
 
     public function index()
     {
-        $user = Auth::user();
-
-        $petitions = DB::table('petitions')->paginate(15);
+        if($this->isAdmin) {
+            $petitions = DB::table('petitions')->paginate(15);
+        }else{
+            $petitions = DB::table('petitions')->where('created_by', $this->user_id)->paginate(15);
+        }
 
         return View::make('dashboard')->with(['petitions' => $petitions]);
     }

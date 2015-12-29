@@ -21,7 +21,12 @@
             @foreach ($petitions as $petition)
                 <a href="petition/{!! $petition->id !!}" class="list-group-item">
                     <h4 class="list-group-item-heading">{{ $petition->name }}</h4>
-                    <p class="list-group-item-text">{{ $petition->description }}</p>
+                    <p class="list-group-item-text">
+                        <span class="petition_desc_meta">#:{!! $petition->code !!}</span>
+                        <span class="petition_desc_meta">Date: {!! $petition->created_at !!}</span>
+                        <span class="petition_desc_meta">@if($petition->status == "1")<span style="color: green">Active</span> @else <span style="color: darkred">Suspended</span> @endif</span>
+
+                    </p>
                 </a>
             @endforeach
 

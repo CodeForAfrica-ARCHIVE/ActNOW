@@ -41,6 +41,9 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">{!! $data['petition']->name !!}</h3>
+                <span class="petition_desc_meta">#:{!! $data['petition']->code !!}</span>
+                <span class="petition_desc_meta">Date: {!! $data['petition']->created_at !!}</span>
+                <span class="petition_desc_meta">@if($data['petition']->status == "1")<span style="color: green">Active</span> @else <span style="color: darkred">Suspended</span> @endif</span>
             </div>
             <div class="panel-body">
                 {!! $data['petition']->description !!}
